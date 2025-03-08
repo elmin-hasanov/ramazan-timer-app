@@ -51,9 +51,8 @@ const getTimeDifference = (targetTime: number): string => {
 
   const hours = Math.floor(diff / 3600);
   const minutes = Math.floor((diff % 3600) / 60);
-  const seconds = Math.floor(diff % 60);
 
-  return `⏳ ${hours} saat ${minutes} dəqiqə ${seconds} saniyə qalıb`;
+  return `${hours} saat ${minutes} dəqiqə qalıb`;
 };
 
 export default function PrayerCountdown() {
@@ -70,7 +69,10 @@ export default function PrayerCountdown() {
       });
 
       const todayPrayer = prayerTimes.find((p) => p.date === today);
-      if (!todayPrayer) return setCountdown("Ramazan ayı Deyil");
+      if (!todayPrayer)
+        return setCountdown(
+          "Ramazan › Tarix (2026) Bazar ertəsi, 16 fevral 2026 axşam – Çərşənbə, 18 mart 2026"
+        );
 
       const now = new Date();
       const imsakTime = formatTime(todayPrayer.imsak);
@@ -78,10 +80,10 @@ export default function PrayerCountdown() {
 
       const isImsakActive =
         now.getTime() >= imsakTime &&
-        now.getTime() < imsakTime + 10 * 60 * 1000;
+        now.getTime() < imsakTime + 60 * 60 * 1000;
       const isAksamActive =
         now.getTime() >= aksamTime &&
-        now.getTime() < aksamTime + 10 * 60 * 1000;
+        now.getTime() < aksamTime + 400 * 60 * 1000;
 
       if (isImsakActive) {
         setMessage(
@@ -351,9 +353,30 @@ export default function PrayerCountdown() {
     return () => clearInterval(interval); // Interval wird beim Verlassen der Komponente gestoppt
   }, []); // Leeres Array sorgt dafür, dass useEffect nur einmal beim ersten Laden ausgeführt wird
 
+  const todayDateString = new Date().toLocaleDateString("tr-TR", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+    weekday: "long",
+  });
+  const todayPrayer = prayerTimes.find((p) => p.date === todayDateString);
+
   return (
     <div>
       <h1>✨ 🌙 Allah orucunuzu qəbul eləsin! 💙 🤲🏼 ✨</h1>
+      <p>
+        📅 <strong>{todayDateString}</strong>
+      </p>
+      {todayPrayer && (
+        <>
+          <p>
+            🌙 İmsak: <strong>{todayPrayer.imsak}</strong>
+          </p>
+          <p>
+            🌆 İftar (axşam azanı) : <strong>{todayPrayer.aksam}</strong>
+          </p>
+        </>
+      )}
       <p className="countdown">{countdown}</p>
       {message && <div>{message}</div>}
     </div>
