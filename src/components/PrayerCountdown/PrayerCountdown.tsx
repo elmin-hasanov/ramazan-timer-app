@@ -36,6 +36,9 @@ const prayerTimes: PrayerTime[] = [
   { date: "27 Mart 2025 Perşembe", imsak: "04:12", aksam: "18:59" },
   { date: "28 Mart 2025 Cuma", imsak: "04:09", aksam: "19:01" },
   { date: "29 Mart 2025 Cumartesi", imsak: "04:06", aksam: "19:03" },
+  { date: "30 Mart 2025 Cumartesi", imsak: "04:06", aksam: "19:03" }, // Ramazan
+  { date: "31 Mart 2025 Pazar", imsak: "04:06", aksam: "19:03" }, // Ramazan
+  { date: "01 Nisan 2025 Pazartesi", imsak: "04:06", aksam: "19:03" }, // Ramazan
 ];
 
 const formatTime = (time: string): number => {
@@ -361,24 +364,68 @@ export default function PrayerCountdown() {
   });
   const todayPrayer = prayerTimes.find((p) => p.date === todayDateString);
 
+  const today = new Date();
+  const isBayram =
+    today.getFullYear() === 2025 &&
+    ((today.getMonth() === 2 && today.getDate() >= 30) ||
+      (today.getMonth() === 3 && today.getDate() <= 1));
+
+  if (isBayram) {
+    return (
+      <div className="bayram-message">
+        <h1>
+          <span className="moon-icon">🌙</span>
+          <br />
+          Ramazan bayraminiz mübarək!
+          <br />
+          <span style={{ fontSize: "1.5rem" }}>Allah qəbul etsin! 💐</span>
+        </h1>
+      </div>
+    );
+  }
+
+  // Check für Kadir Gecesi
+  const isKadirGecesi = todayDateString === "26 Mart 2025 Çarşamba";
+
   return (
-    <div>
-      <h1>✨ 🌙 Allah orucunuzu qəbul eləsin! 💙 🤲🏼 ✨</h1>
-      <p>
-        📅 <strong>{todayDateString}</strong>
-      </p>
-      {todayPrayer && (
-        <>
-          <p>
-            🌙 İmsak: <strong>{todayPrayer.imsak}</strong>
-          </p>
-          <p>
-            🌆 İftar (axşam azanı) : <strong>{todayPrayer.aksam}</strong>
-          </p>
-        </>
+    <div className="app-container">
+      <h1 className="animated-text">
+        ✨ 🌙 Allah orucunuzu qəbul eləsin! 💙 🤲🏼 ✨
+      </h1>
+
+      <div className="prayer-info">
+        <p>📅 Bugünkü Tarix: {todayDateString}</p>
+        {todayPrayer && (
+          <>
+            <div className="prayer-time">
+              <span>🌙 Sübh (İmsak):</span>
+              <strong>{todayPrayer.imsak}</strong>
+            </div>
+            <div className="prayer-time">
+              <span>🌆 Axşam:</span>
+              <strong>{todayPrayer.aksam}</strong>
+            </div>
+          </>
+        )}
+      </div>
+
+      {isKadirGecesi && (
+        <div className="special-notice">
+          <h3>🌟 Bu gün Qədir gecəsidir! 🌟</h3>
+          <p>Bu mübarək gecədə dualarınız qəbul olsun!</p>
+          {isKadirGecesi && (
+            <p className="countdown" style={{ marginTop: "1rem" }}>
+              ⏳ {countdown}
+            </p>
+          )}
+        </div>
       )}
-      <p className="countdown">{countdown}</p>
-      {message && <div>{message}</div>}
+
+      {(countdown || isKadirGecesi) && !message && (
+        <p className="countdown">⏳ {countdown}</p>
+      )}
+
+      {message && <div className="message-box">{message}</div>}
     </div>
   );
 }

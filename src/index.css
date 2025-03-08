@@ -1,31 +1,212 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --primary: #2c3e50;
+  --secondary: #3498db;
+  --accent: #e74c3c;
+  --background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  --text: #ecf0f1;
+  --glass: rgba(255, 255, 255, 0.1);
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--background);
+  color: var(--text);
   min-height: 100vh;
+  line-height: 1.6;
+}
+
+.app-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
 }
 
 h1 {
-  font-size: 3.5em;
-  line-height: 1.1;
+  text-align: center;
+  margin: 2rem 0;
+  font-size: 2.5rem;
+  background: linear-gradient(45deg, #fff, #7f8fa6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.prayer-info {
+  background: var(--glass);
+  padding: 2rem;
+  border-radius: 15px;
+  margin: 2rem 0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease;
+}
+
+.prayer-info:hover {
+  transform: translateY(-5px);
 }
 
 .countdown {
-  font-size: 3em;
+  font-size: 1.8rem;
+  text-align: center;
+  padding: 1.5rem;
+  background: var(--glass);
+  border-radius: 12px;
+  margin: 2rem 0;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.message-box {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 2rem;
+  border-radius: 15px;
+  margin: 2rem 0;
+  border-left: 4px solid var(--secondary);
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bayram-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+  background: linear-gradient(45deg, #16a085, #1abc9c);
+  animation: rainbow 10s infinite alternate;
+}
+
+.bayram-message h1 {
+  font-size: 3rem;
+  line-height: 1.2;
+  padding: 2rem;
+  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .prayer-info {
+    padding: 1rem;
+  }
+
+  .countdown {
+    font-size: 1.4rem;
+  }
+}
+
+/* Special Effects */
+.animated-text {
+  position: relative;
+  display: inline-block;
+}
+
+.animated-text::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: var(--secondary);
+  bottom: -5px;
+  left: 0;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.animated-text:hover::after {
+  transform: scaleX(1);
+}
+
+.moon-icon {
+  font-size: 1.5em;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Prayer Times Specific */
+.prayer-time {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  margin: 1rem 0;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.prayer-time:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(10px);
+}
+
+.special-notice {
+  background: linear-gradient(45deg, #8e44ad, #9b59b6);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin: 1rem 0;
+  text-align: center;
+  animation: glow 2s ease-in-out infinite alternate;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.special-notice h3 {
+  margin: 0 0 0.5rem 0;
+  color: #f1c40f;
+  font-size: 1.4rem;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 10px rgba(142, 68, 173, 0.5);
+  }
+  to {
+    box-shadow: 0 0 20px rgba(155, 89, 182, 0.8);
+  }
+}
+
+.message-box .countdown {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  font-size: 1.2rem;
 }
