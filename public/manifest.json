@@ -1,0 +1,20 @@
+{
+  "short_name": "Ramazan Timer",
+  "name": "Ramazan Timer App",
+  "icons": [
+    {
+      "src": "ramazan.png",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "ramazan.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000"
+}
