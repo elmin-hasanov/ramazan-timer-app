@@ -1,9 +1,9 @@
 :root {
-  --primary: #355e3b; /* Hunter Green */
-  --secondary: #5e8c5e; /* Medium Green */
-  --accent: #d4af37; /* Gold */
+  --primary: #5d7d62; /* Hunter Green */
+  --secondary: #809380; /* Medium Green */
+  --accent: #fdd44e; /* Gold */
   --gold: #ffd700; /* Hellgold */
-  --background: linear-gradient(135deg, #2a4d2a 0%, #355e3b 100%);
+  --background: linear-gradient(135deg, #5c705c 0%, #547659 100%);
   --text: #ecf0f1;
   --glass: rgba(255, 255, 255, 0.1);
 }
