@@ -1,10 +1,22 @@
 :root {
-  --primary: #2c3e50;
-  --secondary: #3498db;
-  --accent: #e74c3c;
-  --background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  --primary: #355e3b; /* Hunter Green */
+  --secondary: #5e8c5e; /* Medium Green */
+  --accent: #d4af37; /* Gold */
+  --gold: #ffd700; /* Hellgold */
+  --background: linear-gradient(135deg, #2a4d2a 0%, #355e3b 100%);
   --text: #ecf0f1;
   --glass: rgba(255, 255, 255, 0.1);
+}
+
+html {
+  overflow: auto; /* Scrollen ermöglichen */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE und Edge */
+  overscroll-behavior: none;
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Webkit (Chrome, Safari) */
 }
 
 body {
@@ -14,6 +26,7 @@ body {
   color: var(--text);
   min-height: 100vh;
   line-height: 1.6;
+  overscroll-behavior: none;
 }
 
 .app-container {
@@ -27,10 +40,10 @@ h1 {
   text-align: center;
   margin: 2rem 0;
   font-size: 2.5rem;
-  background: linear-gradient(45deg, #fff, #7f8fa6);
+  background: linear-gradient(45deg, var(--gold), var(--accent));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .prayer-info {
@@ -55,27 +68,32 @@ h1 {
   background: var(--glass);
   border-radius: 12px;
   margin: 2rem 0;
-  animation: pulse 2s infinite;
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+  animation: gold-pulse 1.5s infinite;
 }
 
-@keyframes pulse {
+@keyframes gold-pulse {
   0% {
-    transform: scale(1);
+    box-shadow: 0 0 5px var(--accent);
+    opacity: 0.9;
   }
   50% {
-    transform: scale(1.02);
+    box-shadow: 0 0 20px var(--accent);
+    opacity: 1;
   }
   100% {
-    transform: scale(1);
+    box-shadow: 0 0 5px var(--accent);
+    opacity: 0.9;
   }
 }
 
 .message-box {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(53, 94, 59, 0.3);
   padding: 2rem;
   border-radius: 15px;
   margin: 2rem 0;
-  border-left: 4px solid var(--secondary);
+  border-left: 4px solid var(--accent);
   animation: fadeIn 0.5s ease-out;
 }
 
@@ -96,7 +114,7 @@ h1 {
   align-items: center;
   min-height: 100vh;
   text-align: center;
-  background: linear-gradient(45deg, #16a085, #1abc9c);
+  background: linear-gradient(45deg, var(--primary), var(--accent));
   animation: rainbow 10s infinite alternate;
 }
 
@@ -105,6 +123,9 @@ h1 {
   line-height: 1.2;
   padding: 2rem;
   text-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(45deg, var(--gold), var(--accent));
+  -webkit-background-clip: text;
+  animation: shimmer 2s infinite;
 }
 
 @media (max-width: 768px) {
@@ -125,7 +146,6 @@ h1 {
   }
 }
 
-/* Special Effects */
 .animated-text {
   position: relative;
   display: inline-block;
@@ -136,7 +156,7 @@ h1 {
   position: absolute;
   width: 100%;
   height: 2px;
-  background: var(--secondary);
+  background: var(--accent);
   bottom: -5px;
   left: 0;
   transform: scaleX(0);
@@ -150,6 +170,7 @@ h1 {
 .moon-icon {
   font-size: 1.5em;
   animation: float 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 5px var(--accent));
 }
 
 @keyframes float {
@@ -162,7 +183,6 @@ h1 {
   }
 }
 
-/* Prayer Times Specific */
 .prayer-time {
   display: flex;
   justify-content: space-between;
@@ -171,42 +191,66 @@ h1 {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 8px;
   transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .prayer-time:hover {
   background: rgba(255, 255, 255, 0.1);
   transform: translateX(10px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
 }
 
 .special-notice {
-  background: linear-gradient(45deg, #8e44ad, #9b59b6);
+  background: linear-gradient(45deg, #3d5b3d, #2a4d2a);
   padding: 1.5rem;
   border-radius: 12px;
   margin: 1rem 0;
   text-align: center;
+  border: 2px solid var(--accent);
   animation: glow 2s ease-in-out infinite alternate;
-  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .special-notice h3 {
   margin: 0 0 0.5rem 0;
-  color: #f1c40f;
+  color: var(--gold);
   font-size: 1.4rem;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
 }
 
 @keyframes glow {
   from {
-    box-shadow: 0 0 10px rgba(142, 68, 173, 0.5);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
   }
   to {
-    box-shadow: 0 0 20px rgba(155, 89, 182, 0.8);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
   }
 }
 
 .message-box .countdown {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(53, 94, 59, 0.2);
   padding: 1rem;
   border-radius: 8px;
   margin-top: 1rem;
   font-size: 1.2rem;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.prayer-time span::before {
+  content: "✦";
+  color: var(--accent);
+  margin-right: 0.5rem;
+}
+
+.prayer-time strong {
+  color: var(--gold);
+  font-weight: 500;
 }

@@ -389,20 +389,18 @@ export default function PrayerCountdown() {
 
   return (
     <div className="app-container">
-      <h1 className="animated-text">
-        ✨ 🌙 Allah orucunuzu qəbul eləsin! 💙 🤲🏼 ✨
-      </h1>
+      <h1 className="animated-text">✨ Allah orucunuzu qəbul eləsin! ✨</h1>
 
       <div className="prayer-info">
         <p>📅 Bugünkü Tarix: {todayDateString}</p>
         {todayPrayer && (
           <>
             <div className="prayer-time">
-              <span>🌙 Sübh (İmsak):</span>
+              <span>Sübh (İmsak): </span>
               <strong>{todayPrayer.imsak}</strong>
             </div>
             <div className="prayer-time">
-              <span>🌆 Axşam:</span>
+              <span>İftar (axşam azanı): </span>
               <strong>{todayPrayer.aksam}</strong>
             </div>
           </>
@@ -422,7 +420,7 @@ export default function PrayerCountdown() {
       )}
 
       {(countdown || isKadirGecesi) && !message && (
-        <p className="countdown">⏳ {countdown}</p>
+        <p className="countdown">{countdown}</p>
       )}
 
       {message && <div className="message-box">{message}</div>}
