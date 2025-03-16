@@ -15,8 +15,8 @@
   ],
   "start_url": "/ramazan-timer-app/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "background_color": "#5c8c5c",
+  "theme_color": "#5c8c5c",
   "scope": "/ramazan-timer-app/",
   "description": "A timer for Ramadan"
 }
