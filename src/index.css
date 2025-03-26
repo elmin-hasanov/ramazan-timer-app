@@ -3,9 +3,9 @@
   --secondary: #809380;
   --accent: #fdd44e;
   --gold: #ffd700;
-  --background: linear-gradient(135deg, #5c8c5c 0%, #547659 100%);
+  --background: linear-gradient(135deg, #778977 0%, #5f8e66 100%);
   --text: #ecf0f1;
-  --glass: rgba(255, 255, 255, 0.1);
+  --glass: rgba(0, 0, 0, 0.24);
 }
 
 .night-mode {
@@ -254,7 +254,7 @@ h1 {
 }
 
 .special-notice {
-  background: linear-gradient(45deg, #3d5b3d, #2a4d2a);
+  background: linear-gradient(45deg, #84b084, #2a4d2a);
   padding: 1.5rem;
   border-radius: 12px;
   margin: 1rem 0;
@@ -324,10 +324,10 @@ button:hover {
 }
 
 .calendar-grid {
-  padding: 2rem;
+  padding: 4vw;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 20px;
+  grid-template-columns: auto auto auto;
+  gap: 2vw;
   justify-items: center;
   align-items: center;
   background: rgba(0, 0, 0, 0.1);
@@ -337,45 +337,27 @@ button:hover {
   box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
 }
 
-.calendar-grid div {
+.calendar-item {
   display: flex;
-  font-size: 1rem;
-  font-weight: 300;
-  width: 100%;
-  max-width: 140px;
-  height: 110px;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  text-align: center;
-  color: #ece1bc;
-  text-shadow: 0 0 8px rgba(124, 103, 34, 0.8);
+  justify-content: center;
+  padding: 1rem;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+  transition: all 0.3s ease;
+  height: 20vw;
+  font-size: 3vw;
 }
 
-.calendar-grid div span {
-  font-size: 1rem;
-  color: #ffffff;
-  text-shadow: 0 0 10px rgba(124, 103, 34, 0.887);
-  font-weight: 500;
+.date {
+  margin-bottom: 0.5rem;
+  color: var(--gold);
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
 }
 
-.calendar-grid div:nth-of-type(26) span {
-  color: #fdd44e;
-  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
-}
-
-.calendar-grid div:nth-of-type(30) span {
-  color: #fdd44e;
-  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
-}
-
-.calendar-grid div:nth-of-type(31) span {
-  color: #fdd44e;
-  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
-}
-
-.calendar-grid div:nth-of-type(32) span {
-  color: #fdd44e;
-  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+.times {
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
 }

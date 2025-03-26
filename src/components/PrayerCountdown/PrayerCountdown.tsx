@@ -379,8 +379,8 @@ export default function PrayerCountdown() {
               <div key={time.date} className="calendar-item">
                 <div className="date">{time.date}</div>
                 <div className="times">
-                  <span>İmsak: {time.imsak}</span>
-                  <span>İftar: {time.aksam}</span>
+                  <div>İmsak: {time.imsak}</div>
+                  <div>İftar: {time.aksam}</div>
                 </div>
               </div>
             ))}
